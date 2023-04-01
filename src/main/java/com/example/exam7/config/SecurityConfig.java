@@ -34,18 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select emailAddress,password,enabled "
-                        + "from users "
-                        + "where emailAddress = ?")
+                        + "from clients "
+                        + "where email = ?")
                 .authoritiesByUsernameQuery("select name,authority "
                         + "from authorities "
-                        + "where username = ?");
+                        + "where name = ?");
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/WeCanSeeAllOrders").fullyAuthenticated();
-
-        http.authorizeRequests()
+                .antMatchers("/order/**").fullyAuthenticated();
+                http.authorizeRequests()
                 .anyRequest()
                 .permitAll();
 

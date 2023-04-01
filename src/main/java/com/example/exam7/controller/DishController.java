@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/dishes")
@@ -16,7 +19,7 @@ public class DishController {
     public final DishService dishService;
 
     @GetMapping("/weCanSeeAllDishesByEstablishment{idEstablishment}")
-    public ResponseEntity<DishDto> showAllDishByEstablishmentId(@RequestParam Long idEstablishment){
+    public ResponseEntity<List<DishDto>> showAllDishByEstablishmentId(@RequestParam Long idEstablishment){
         return new ResponseEntity<>(dishService.showAllDishesByEstablishmentId(idEstablishment), HttpStatus.OK);
     }
 }

@@ -1,17 +1,23 @@
 package com.example.exam7.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.exam7.utils.GenerateData;
+import lombok.*;
 
+@Data
+@Builder
 @NoArgsConstructor
-@Getter
-@Setter
 @AllArgsConstructor
+
 public class Dish {
     private Long idDish;
     private String name;
     private String type;
     private Integer price;
+    private Establishment establishment;
+//    public static Dish random() {
+//        return builder()
+//                .name(GenerateData.toDish())
+//                .email(GenerateData.randomEmail())
+//                .build();
+//    }
 }

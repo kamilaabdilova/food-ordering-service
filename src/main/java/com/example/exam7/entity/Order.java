@@ -1,16 +1,10 @@
 package com.example.exam7.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
-
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
-@AllArgsConstructor
 public class Order {
     private Long idOrder;
     private Client client;

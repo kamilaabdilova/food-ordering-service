@@ -16,11 +16,11 @@ import java.awt.print.Pageable;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/client")
 public class ClientController {
-    private final OrderService orderService;
-    @GetMapping("/WeCanSeeAllOrders{id}")
-    public ResponseEntity<OrderDto> WeCanSeeAllOrders(@RequestParam Long idClient) {
-        return new ResponseEntity<>(orderService.weCanSeeAllOrders(idClient), HttpStatus.OK);
+    private final ClientService clientService;
+    public ResponseEntity<String> registr(@RequestBody Client client){
+        return new ResponseEntity<>(clientService.registr(client), HttpStatus.OK);
     }
+
+
 }

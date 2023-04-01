@@ -18,7 +18,7 @@ public class ClientDao {
     private final PasswordEncoder encoder;
 
     public void save(Client client) {
-        String sql = "insert into clients(id_client, name, email, password) " +
+        String sql = "insert into clients(id, name, email, password) " +
                 "values(?,?,?,?)";
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(sql);

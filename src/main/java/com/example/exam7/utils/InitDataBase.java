@@ -47,7 +47,8 @@ public class InitDataBase {
                 "(\n" +
                 "id serial not null primary key,\n" +
                 "name varchar, \n" +
-                "email varchar \n" +
+                "email varchar unique, \n" +
+                "password varchar \n" +
                 ");\n";
 
         jdbcTemplate.execute(tableClient);
@@ -88,14 +89,14 @@ public class InitDataBase {
         jdbcTemplate.execute(esta);
     }
     public void createOrderTable() {
-        String tableOrder = "create table if not exists order\n" +
+        String tableOrder = "create table if not exists orders\n" +
                 "(\n" +
                 "id serial not null primary key,\n" +
                 "id_client integer, \n" +
                 "id_dish integer, \n" +
-                "dateOrder timestamp \n" +
+                "date_order timestamp \n" +
                 ");\n";
-        String order = "insert into order(id_client, id_dish, date_order)" +
+        String order = "insert into orders(id_client, id_dish, date_order)" +
                 "values ( 1, 2, date(now()))," +
                 "(2, 3, date(now()))," +
                 "(1, 1, date(now()))," +
@@ -108,14 +109,14 @@ public class InitDataBase {
     public void createAuthTable(){
         String tableAuth = "CREATE TABLE authorities\n" +
                 "(\n" +
-                "    name  varchar   NOT NULL primary key,\n" +
-                "        constraint authorities_client_fk REFERENCES client (email)\n" +
+                "    name  varchar   NOT NULL primary key\n" +
+                "        constraint authorities_clients___fk REFERENCES clients (email)\n" +
                 "        ON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 "    authority varchar(50)    NOT NULL\n" +
                 ");\n";
         String auth = "insert into authorities(name, authority)" +
-                "values ('kamila@gmail.com', 'true')," +
-                "('max@gmail.com', 'true'),";
+                "values ('kamila@gmail.com', true)," +
+                "('max@gmail.com', true)";
         jdbcTemplate.execute(tableAuth);
         jdbcTemplate.execute(auth);
     }
